@@ -5,6 +5,8 @@ class CreateProductDto {
     price: number;
     quantity_stock: number; // quantity in stock
     quantity_sold: number;
+    due_date: Date;
+    manufacturing_date: Date;
     description: string; //should contain the description of the product
 }
 

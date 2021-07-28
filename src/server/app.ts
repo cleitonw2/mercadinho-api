@@ -2,11 +2,13 @@ import "reflect-metadata";
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
 import { routes } from "./routes";
-import "../database"
+import createConnection from  "../database"
 import dotenv from "dotenv"
 import { AppError } from "../middlewares/error/AppError";
 
 dotenv.config();
+
+createConnection();
 
 const app = express();
 
