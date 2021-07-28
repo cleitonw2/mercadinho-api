@@ -30,7 +30,7 @@ describe("Create Product Controller", () => {
             password: "authpass"
         }
 
-        const userResponse = await request(app).post("/v1/users/")
+       await request(app).post("/v1/users/")
             .send(userData);
 
         const user = await request(app).post("/v1/users/login")
@@ -66,7 +66,7 @@ describe("Create Product Controller", () => {
                 password: "authpass"
             }
 
-            const userResponse = await request(app).post("/v1/users/")
+            await request(app).post("/v1/users/")
                 .send(userData);
 
             const user = await request(app).post("/v1/users/login")
