@@ -7,6 +7,7 @@ import { DeleteProductController } from "./controller/DeleteProductController";
 import { ReadFileController } from "./controller/ReadFileController";
 import { ShowProductByIdController } from "./controller/ShowProductByIdController";
 import { ShowProductsController } from "./controller/ShowProductsController";
+import { UpdateProductController } from "./controller/UpdateProductController";
 
 const productRouter = Router();
 const muletrConfig = multer();
@@ -16,6 +17,7 @@ const showProductByIdController = new ShowProductByIdController();
 const showProductsController = new ShowProductsController();
 const deleteProductController = new DeleteProductController();
 const readFileController = new ReadFileController();
+const updateProductController = new UpdateProductController()
 
 productRouter.post(
     "/",
@@ -50,6 +52,13 @@ productRouter.post(
     ensureAdmin,
     muletrConfig.single("file"),
     readFileController.handle
+);
+
+productRouter.put(
+    "/:id",
+    ensureAuthenticated,
+    ensureAdmin,
+    updateProductController.handle
 );
 
 export { productRouter };
