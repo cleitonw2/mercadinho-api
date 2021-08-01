@@ -5,6 +5,7 @@ import { ensureAuthenticated } from "../../middlewares/auth/ensureAuthenticated"
 import { CreateProductController } from "./controller/CreateProductController";
 import { DeleteProductController } from "./controller/DeleteProductController";
 import { ReadFileController } from "./controller/ReadFileController";
+import { SellProductController } from "./controller/SellProductController";
 import { ShowProductByIdController } from "./controller/ShowProductByIdController";
 import { ShowProductsController } from "./controller/ShowProductsController";
 import { UpdateProductController } from "./controller/UpdateProductController";
@@ -17,7 +18,8 @@ const showProductByIdController = new ShowProductByIdController();
 const showProductsController = new ShowProductsController();
 const deleteProductController = new DeleteProductController();
 const readFileController = new ReadFileController();
-const updateProductController = new UpdateProductController()
+const updateProductController = new UpdateProductController();
+const sellProductController = new SellProductController();
 
 productRouter.post(
     "/",
@@ -59,6 +61,12 @@ productRouter.put(
     ensureAuthenticated,
     ensureAdmin,
     updateProductController.handle
+);
+
+productRouter.patch(
+    "/:id/:quantitySold",
+    ensureAuthenticated,
+    sellProductController.handle
 );
 
 export { productRouter };

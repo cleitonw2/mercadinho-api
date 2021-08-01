@@ -8,7 +8,7 @@ class UpdateProductController {
     async handle(
         request: Request,
         response: Response
-    ): Promise<Response<void>> {
+    ): Promise<Response> {
 
         const { id } = request.params;
         const productData: CreateProductDto = request.body;
