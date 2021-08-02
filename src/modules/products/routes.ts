@@ -2,6 +2,7 @@ import { Router } from "express";
 import multer from "multer";
 import { ensureAdmin } from "../../middlewares/auth/ensureAdmin";
 import { ensureAuthenticated } from "../../middlewares/auth/ensureAuthenticated";
+import { CheckExpirationDateController } from "./controller/CheckExpirationDateController";
 import { CreateProductController } from "./controller/CreateProductController";
 import { DeleteProductController } from "./controller/DeleteProductController";
 import { ReadFileController } from "./controller/ReadFileController";
@@ -20,12 +21,12 @@ const deleteProductController = new DeleteProductController();
 const readFileController = new ReadFileController();
 const updateProductController = new UpdateProductController();
 const sellProductController = new SellProductController();
+const checkExpirationDate = new CheckExpirationDateController()
 
-productRouter.post(
-    "/",
+productRouter.get(
+    "/expiration/date",
     ensureAuthenticated,
-    ensureAdmin, 
-    createProductController.handle
+    checkExpirationDate.handle
 );
 
 productRouter.get(
@@ -46,6 +47,13 @@ productRouter.delete(
     ensureAuthenticated,
     ensureAdmin,
     deleteProductController.handle
+);
+
+productRouter.post(
+    "/",
+    ensureAuthenticated,
+    ensureAdmin, 
+    createProductController.handle
 );
 
 productRouter.post(
