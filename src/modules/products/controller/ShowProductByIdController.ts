@@ -15,7 +15,7 @@ class ShowProductByIdController {
         const product = await showProductByIdService
             .execute(id);
 
-        return response.json(product);
+        return response.status(200).json(product);
     }
 }
 

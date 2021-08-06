@@ -17,7 +17,7 @@ class UpdateProductController {
 
         await updateProductService.execute(id, productData);
         
-        return response.json();
+        return response.status(204).json();
     }
 }
 

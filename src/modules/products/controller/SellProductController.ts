@@ -15,7 +15,7 @@ class SellProductController {
 
         await sellProductService.execute(id, Number(quantitySold));
 
-        return response.json();
+        return response.status(204).json();
     }
 }
 

@@ -9,7 +9,7 @@ export default async (): Promise<Connection> => {
                 process.env.NODE_ENV === "test"
                     ? "./src/database/database.test.sqlite"
                     : defaultOptions.database,
-                type: process.env.NODE_ENV === "test"? "sqlite": "sqlite"// sqlite or postgres
+            type: process.env.NODE_ENV === "test" ? "sqlite" : "sqlite"// sqlite or postgres
         })
     );
 }
