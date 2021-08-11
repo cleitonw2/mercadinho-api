@@ -1,8 +1,8 @@
 import { getConnection } from "typeorm";
-import createConnection from "../../../database";
-import { AppError } from "../../../middlewares/error/AppError";
-import { CreateProductDto } from "../dtos/CreateProduct.dto";
-import { CreateProductService } from "./CreateProductService";
+import createConnection from "../../../../database";
+import { AppError } from "../../../../middlewares/error/AppError";
+import { CreateProductDto } from "../../dtos/CreateProduct.dto";
+import { CreateProductService } from "../CreateProductService";
 
 
 describe("Create Product", () => {
@@ -19,7 +19,7 @@ describe("Create Product", () => {
     });
 
     it("Should be able to create a new product", async () => {
-        const dueDAte = new Date("2021-07-27T18:27:56.000Z");
+        const dueDAte = new Date("2023-07-27T18:27:56.000Z");
         const manufacturingDate = new Date("2020-07-27T18:24:56.000Z");
 
         const productData: CreateProductDto = {
@@ -41,7 +41,7 @@ describe("Create Product", () => {
     });
 
     it("Should not be able to create a product with exists barcode", async () => {
-        const dueDAte = new Date("2021-07-27T18:27:56.000Z");
+        const dueDAte = new Date("2023-07-27T18:27:56.000Z");
         const manufacturingDate = new Date("2020-07-27T18:24:56.000Z");
 
         const productData: CreateProductDto = {

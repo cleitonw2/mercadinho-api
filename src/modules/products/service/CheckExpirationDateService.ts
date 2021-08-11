@@ -1,5 +1,7 @@
 import { getCustomRepository } from "typeorm";
 import { ProductsRepositories } from "../repositories/ProductsRepositories";
+import moment from "moment";
+import { Product } from "../entities/Product";
 
 
 class CheckExpirationDateService {
@@ -9,18 +11,22 @@ class CheckExpirationDateService {
             getCustomRepository(ProductsRepositories)
     ) { }
 
-    async execute(): Promise<object | undefined> {
+    async execute(): Promise<Product[]> {
 
-        const products = await this.productsRepositories.find();
+        const productData = await this.productsRepositories.find();
 
-        const date = new Date();
+        const now = moment().format();
 
-        for await (let product of products) {
-            if (product.due_date <= date)
-                return { product, message: "expired product date!" };
+        const futureDate = moment(now).add(10, "days");
+
+        const products: Product[] = [];
+
+        for await (let product of productData) {
+            if (moment(product.due_date).isBefore(futureDate))
+                products.push(product);
         }
 
-        return undefined;
+        return products;
     }
 }
 
