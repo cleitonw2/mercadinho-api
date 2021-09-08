@@ -12,7 +12,7 @@ class CreateUserService {
     ): Promise<object> {
 
         const usersRepositories = getCustomRepository(UsersRepositories);
-   
+
         const userAlreadyExists = await usersRepositories
             .findOne({ email: createUserDto.email });
 
@@ -20,7 +20,7 @@ class CreateUserService {
             throw new AppError("User already exists!", 409);
         }
 
-        if(createUserDto.password.length < 5) {
+        if (createUserDto.password.length < 5) {
             throw new AppError("Password requires five or more characters!");
         }
 

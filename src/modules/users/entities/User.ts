@@ -1,9 +1,6 @@
 import {
     Column,
-    CreateDateColumn,
     Entity,
-    PrimaryColumn,
-    UpdateDateColumn
 } from "typeorm";
 import {
     Exclude
@@ -13,14 +10,11 @@ import {
     IsEmail,
     IsNotEmpty
 } from "class-validator";
-import { v4 as uuid } from "uuid";
+import { MainEntity } from "../../../entities/MainEntity";
 
 
 @Entity("users")
-class User {
-
-    @PrimaryColumn()
-    readonly id: string;
+class User extends MainEntity {
 
     @Column()
     @IsNotEmpty()
@@ -37,18 +31,6 @@ class User {
     @Column()
     @Exclude()
     password: string;
-
-    @CreateDateColumn()
-    created_at: Date;
-
-    @UpdateDateColumn()
-    updated_at: Date;
-
-    constructor() {
-        if (!this.id) {
-            this.id = uuid();
-        }
-    }
 }
 
 export { User };
